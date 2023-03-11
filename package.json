@@ -34,11 +34,15 @@
     "lint": "eslint --fix --ext .ts,.tsx ./src",
     "prepare": "husky install"
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "npm run lint"
-    ]
-  },
+  "husky": {
+    "hooks": {
+        "pre-commit": "lint-staged",
+        "pre-push": "npm test"
+    }
+},
+"lint-staged": {
+    "*.ts": ["tslint", "prettier --write", "git add"]
+},
   "eslintConfig": {
     "extends": [
       "react-app",
