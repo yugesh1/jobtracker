@@ -1,12 +1,12 @@
-import React, { ReactElement } from "react";
-import Wrapper from "./StatItem.styled";
+import React, { type ReactElement } from 'react'
+import Wrapper from './StatItem.styled'
 
 interface IProps {
-  count: number;
-  title: string;
-  icon: ReactElement;
-  color: string;
-  bcg: string;
+  count: number
+  title: string
+  icon: ReactElement
+  color: string
+  bcg: string
 }
 
 const StatItem = ({ count, title, icon, color, bcg }: IProps) => {
@@ -18,7 +18,7 @@ const StatItem = ({ count, title, icon, color, bcg }: IProps) => {
       </header>
       <h5>{title}</h5>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default StatItem;
+export default StatItem

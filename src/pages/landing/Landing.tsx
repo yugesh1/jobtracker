@@ -1,8 +1,8 @@
-import main from "../../assets/images/main.svg";
-import styled from "styled-components";
-import { Logo } from "../../components";
-import { Link } from "react-router-dom";
-import React from "react";
+import main from '../../assets/images/main.svg'
+import styled from 'styled-components'
+import { Logo } from '../../components'
+import { Link } from 'react-router-dom'
+import React from 'react'
 const Landing: React.FC = () => {
   return (
     <Wrapper>
@@ -15,10 +15,12 @@ const Landing: React.FC = () => {
             job <span>tracking</span> app
           </h1>
           <p>
+            {`
             I'm baby gastropub crucifix woke, pinterest DIY hoodie migas
             biodiesel lomo heirloom. Retro offal af keytar lo-fi, gentrify 3
-            wolf moon readymade ascot affogato VHS.
+            wolf moon readymade ascot affogato VHS.`}
           </p>
+
           <Link to="/register" className="btn btn-hero">
             Login/Register
           </Link>
@@ -26,8 +28,8 @@ const Landing: React.FC = () => {
         <img src={main} alt="main logo" className="img main-img" />
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
 const Wrapper = styled.main`
   nav {
@@ -65,6 +67,6 @@ const Wrapper = styled.main`
       display: block;
     }
   }
-`;
+`
 
-export default Landing;
+export default Landing

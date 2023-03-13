@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   BarChart,
   Bar,
@@ -6,9 +6,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
-} from "recharts";
-import { IMonthApplication } from "../../constants/interface";
+  ResponsiveContainer
+} from 'recharts'
+import { type IMonthApplication } from '../../constants/interface'
 
 const BarChartComponent = ({ data }: { data: IMonthApplication[] }) => {
   return (
@@ -21,7 +21,7 @@ const BarChartComponent = ({ data }: { data: IMonthApplication[] }) => {
         <Bar dataKey="count" fill="#3b82f6" barSize={75} />
       </BarChart>
     </ResponsiveContainer>
-  );
-};
+  )
+}
 
-export default BarChartComponent;
+export default BarChartComponent

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   ResponsiveContainer,
   AreaChart,
@@ -6,9 +6,9 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-} from "recharts";
-import { IMonthApplication } from "../../constants/interface";
+  Tooltip
+} from 'recharts'
+import { type IMonthApplication } from '../../constants/interface'
 
 const AreaChartComponent = ({ data }: { data: IMonthApplication[] }) => {
   return (
@@ -21,7 +21,7 @@ const AreaChartComponent = ({ data }: { data: IMonthApplication[] }) => {
         <Area type="monotone" dataKey="count" stroke="#1e3a8a" fill="#3b82f6" />
       </AreaChart>
     </ResponsiveContainer>
-  );
-};
+  )
+}
 
-export default AreaChartComponent;
+export default AreaChartComponent

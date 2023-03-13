@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
 interface IProps {
-  labelText?: string;
-  name: string;
-  value: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type: string;
+  labelText?: string
+  name: string
+  value: string
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  type: string
 }
 
 const FormRow: React.FC<IProps> = ({
@@ -13,12 +13,12 @@ const FormRow: React.FC<IProps> = ({
   name,
   value,
   handleChange,
-  labelText,
+  labelText
 }) => {
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">
-        {labelText || name}
+        {labelText ?? name}
       </label>
       <input
         type={type}
@@ -28,7 +28,7 @@ const FormRow: React.FC<IProps> = ({
         className="form-input"
       />
     </div>
-  );
-};
+  )
+}
 
-export default FormRow;
+export default FormRow

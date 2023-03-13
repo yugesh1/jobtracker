@@ -1,33 +1,32 @@
-import { useState } from "react";
-import { FormRow } from "../../components";
-import Wrapper from "./DashboardFormPage.styled";
-import { toast } from "react-toastify";
-import { updateUser } from "../../features/thunks/userSlice";
-import { useAppDispatch, useAppSelector } from "../../store";
-import React from "react";
+import React, { useState } from 'react'
+import { FormRow } from '../../components'
+import Wrapper from './DashboardFormPage.styled'
+import { toast } from 'react-toastify'
+import { updateUser } from '../../features/thunks/userSlice'
+import { useAppDispatch, useAppSelector } from '../../store'
 
 const Profile: React.FC = () => {
-  const { user, isLoading } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  const { user, isLoading } = useAppSelector((state) => state.user)
+  const dispatch = useAppDispatch()
   const [userData, setUserData] = useState({
-    name: user?.name || "",
-    email: user?.email || "",
-    lastName: user?.lastName || "",
-    location: user?.location || "",
-  });
+    name: user?.name ?? '',
+    email: user?.email ?? '',
+    lastName: user?.lastName ?? '',
+    location: user?.location ?? ''
+  })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
-  const onSubmit = (e: React.SyntheticEvent) => {
-    console.log(e);
-    e.preventDefault();
-    const { name, email, lastName, location } = userData;
-    if (!name || !email || !lastName || !location) {
-      toast.error("Please fill out all fields");
-      return;
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
+  const onSubmit = async (e: React.SyntheticEvent) => {
+    console.log(e)
+    e.preventDefault()
+    const { name, email, lastName, location } = userData
+    if (name !== '' || email !== '' || lastName !== '' || location !== '') {
+      toast.error('Please fill out all fields')
+      return
     }
-    dispatch(updateUser(userData));
-  };
+    await dispatch(updateUser(userData))
+  }
   return (
     <Wrapper>
       <form className="form" onSubmit={onSubmit}>
@@ -59,12 +58,12 @@ const Profile: React.FC = () => {
             handleChange={handleChange}
           />
           <button type="submit" className="btn btn-block" disabled={isLoading}>
-            {isLoading ? "Please wait..." : "save changes"}
+            {isLoading ? 'Please wait...' : 'save changes'}
           </button>
         </div>
       </form>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

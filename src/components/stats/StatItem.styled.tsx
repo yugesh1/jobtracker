@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-const Wrapper = styled.article<{ color: string; bcg: string }>`
+const Wrapper = styled.article<{ color: string, bcg: string }>`
   padding: 2rem;
   background: var(--white);
   border-radius: var(--borderRadius);
@@ -36,6 +36,6 @@ const Wrapper = styled.article<{ color: string; bcg: string }>`
       color: ${(props) => props.color};
     }
   }
-`;
+`
 
-export default Wrapper;
+export default Wrapper

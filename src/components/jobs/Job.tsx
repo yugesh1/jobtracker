@@ -1,13 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Wrapper from "./Job.styled";
-import JobInfo from "./JobInfo";
-import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from "react-icons/fa";
-import { setEditJob } from "../../features/reducers/jobSlice";
-import { deleteJob } from "../../features/thunks/jobSlice";
-import moment from "moment/moment";
-import { IJob } from "../../constants/interface";
-import { useAppDispatch } from "../../store";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Wrapper from './Job.styled'
+import JobInfo from './JobInfo'
+import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa'
+import { setEditJob } from '../../features/reducers/jobSlice'
+import { deleteJob } from '../../features/thunks/jobSlice'
+import moment from 'moment/moment'
+import { type IJob } from '../../constants/interface'
+import { useAppDispatch } from '../../store'
 
 const Job = ({
   _id,
@@ -16,10 +16,10 @@ const Job = ({
   jobLocation,
   jobType,
   createdAt,
-  status,
+  status
 }: IJob) => {
-  const date = moment(createdAt).format("MMM Do, YYYY");
-  const dispatch = useAppDispatch();
+  const date = moment(createdAt).format('MMM Do, YYYY')
+  const dispatch = useAppDispatch()
   return (
     <Wrapper>
       <header>
@@ -49,9 +49,9 @@ const Job = ({
                     company,
                     jobLocation,
                     jobType,
-                    status,
+                    status
                   })
-                );
+                )
               }}
             >
               Edit
@@ -59,8 +59,8 @@ const Job = ({
             <button
               type="button"
               className="btn delete-btn"
-              onClick={() => {
-                dispatch(deleteJob(_id));
+              onClick={async () => {
+                await dispatch(deleteJob(_id))
               }}
             >
               Delete
@@ -69,7 +69,7 @@ const Job = ({
         </footer>
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Job;
+export default Job

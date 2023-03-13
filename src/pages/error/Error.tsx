@@ -1,7 +1,7 @@
-import React from "react";
-import Wrapper from "./ErrorPage.styled";
-import img from "../../assets/images/not-found.svg";
-import { Link } from "react-router-dom";
+import React from 'react'
+import Wrapper from './ErrorPage.styled'
+import img from '../../assets/images/not-found.svg'
+import { Link } from 'react-router-dom'
 const Error: React.FC = () => {
   return (
     <Wrapper className="full-page">
@@ -12,7 +12,7 @@ const Error: React.FC = () => {
         <Link to="/">Back home</Link>
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Error;
+export default Error

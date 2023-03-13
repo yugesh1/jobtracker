@@ -1,25 +1,30 @@
-import React from "react";
-import { useEffect } from "react";
-import { StatsContainer, Loading, ChartsContainer } from "../../components";
-import { showStats } from "../../features/thunks/allJobs";
-import { useAppDispatch, useAppSelector } from "../../store";
+import React, { useEffect } from 'react'
+
+import { StatsContainer, Loading, ChartsContainer } from '../../components'
+import { showStats } from '../../features/thunks/allJobs'
+import { useAppDispatch, useAppSelector } from '../../store'
 
 const Stats = () => {
   const { monthlyApplications, isLoading } = useAppSelector(
     (state) => state.allJobs
-  );
-  const dispatch = useAppDispatch();
+  )
+  const dispatch = useAppDispatch()
+
   useEffect(() => {
-    dispatch(showStats());
+    const displayStats = async (): Promise<void> => {
+      await dispatch(showStats())
+    }
+    displayStats().catch((error) => { console.log(error) })
+    // eslint-disable-next-line
   }, []);
-  if (isLoading) return <Loading center />;
+  if (isLoading) return <Loading center />
 
   return (
     <>
       <StatsContainer />
       {monthlyApplications.length > 0 && <ChartsContainer />}
     </>
-  );
-};
+  )
+}
 
-export default Stats;
+export default Stats
