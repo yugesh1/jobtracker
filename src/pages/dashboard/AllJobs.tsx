@@ -1,5 +1,5 @@
-import React from "react";
-import { JobsContainer, SearchContainer } from "../../components";
+import React from 'react'
+import { JobsContainer, SearchContainer } from '../../components'
 
 const AllJobs: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const AllJobs: React.FC = () => {
       <SearchContainer />
       <JobsContainer />
     </>
-  );
-};
+  )
+}
 
-export default AllJobs;
+export default AllJobs

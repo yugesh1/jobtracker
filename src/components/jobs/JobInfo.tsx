@@ -1,11 +1,11 @@
-import React from "react";
-import { ReactElement } from "react";
-import Wrapper from "./JobInfo.styled";
+import React, { type ReactElement } from 'react'
 
-type IProps = {
-  icon: ReactElement;
-  text: string;
-};
+import Wrapper from './JobInfo.styled'
+
+interface IProps {
+  icon: ReactElement
+  text: string
+}
 
 const JobInfo: React.FC<IProps> = ({ icon, text }) => {
   return (
@@ -13,7 +13,7 @@ const JobInfo: React.FC<IProps> = ({ icon, text }) => {
       <span className="icon">{icon}</span>
       <span className="text">{text}</span>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default JobInfo;
+export default JobInfo

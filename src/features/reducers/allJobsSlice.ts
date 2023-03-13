@@ -1,45 +1,45 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
-import { getAllJobs, showStats } from "../thunks/allJobs";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
+import { getAllJobs, showStats } from '../thunks/allJobs'
 import {
-  IDefaultStats,
-  IJob,
-  IMonthApplication,
-} from "../../constants/interface";
+  type IDefaultStats,
+  type IJob,
+  type IMonthApplication
+} from '../../constants/interface'
 
 enum ESortOption {
-  LATEST = "latest",
-  OLDEST = "oldest",
-  AZ = "a-z",
-  ZA = "z-a",
+  LATEST = 'latest',
+  OLDEST = 'oldest',
+  AZ = 'a-z',
+  ZA = 'z-a',
 }
 
 const initialFiltersState = {
-  search: "",
-  searchStatus: "all",
-  searchType: "all",
-  sort: "latest",
+  search: '',
+  searchStatus: 'all',
+  searchType: 'all',
+  sort: 'latest',
   sortOptions: [
     ESortOption.LATEST,
     ESortOption.OLDEST,
     ESortOption.AZ,
-    ESortOption.ZA,
-  ],
-};
+    ESortOption.ZA
+  ]
+}
 
 interface IInitialState {
-  isLoading: boolean;
-  jobs: IJob[] | [];
-  totalJobs: number;
-  numOfPages: number;
-  page: number;
-  stats: IDefaultStats | null;
-  monthlyApplications: IMonthApplication[];
-  search: string;
-  searchStatus: string;
-  searchType: string;
-  sort: string;
-  sortOptions: ESortOption[];
+  isLoading: boolean
+  jobs: IJob[] | []
+  totalJobs: number
+  numOfPages: number
+  page: number
+  stats: IDefaultStats | null
+  monthlyApplications: IMonthApplication[]
+  search: string
+  searchStatus: string
+  searchType: string
+  sort: string
+  sortOptions: ESortOption[]
 }
 
 const initialState: IInitialState = {
@@ -50,73 +50,73 @@ const initialState: IInitialState = {
   page: 1,
   stats: null,
   monthlyApplications: [],
-  ...initialFiltersState,
-};
+  ...initialFiltersState
+}
 
 const allJobsSlice = createSlice({
-  name: "allJobs",
+  name: 'allJobs',
   initialState,
   reducers: {
     showLoading: (state) => {
-      state.isLoading = true;
+      state.isLoading = true
     },
     hideLoading: (state) => {
-      state.isLoading = false;
+      state.isLoading = false
     },
     handleChange: (
       state,
-      action: PayloadAction<{ name: string; value: any }>
+      action: PayloadAction<{ name: string, value: any }>
     ) => {
-      const { name, value } = action.payload;
+      const { name, value } = action.payload
       return {
         ...state,
         page: 1,
-        [name]: value,
-      };
+        [name]: value
+      }
     },
     clearFilters: (state) => {
       return {
         ...state,
-        ...initialFiltersState,
-      };
+        ...initialFiltersState
+      }
     },
     changePage: (state, { payload }) => {
-      state.page = payload;
+      state.page = payload
     },
     clearAllJobsState: () => {
-      return initialState;
-    },
+      return initialState
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(getAllJobs.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = true
       })
       .addCase(getAllJobs.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.jobs = payload.jobs;
-        state.numOfPages = payload.numOfPages;
-        state.totalJobs = payload.totalJobs;
+        state.isLoading = false
+        state.jobs = payload.jobs
+        state.numOfPages = payload.numOfPages
+        state.totalJobs = payload.totalJobs
       })
       .addCase(getAllJobs.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        toast.error(payload);
-      });
+        state.isLoading = false
+        toast.error(payload)
+      })
     builder
       .addCase(showStats.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = true
       })
       .addCase(showStats.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.stats = payload.defaultStats;
-        state.monthlyApplications = payload.monthlyApplications;
+        state.isLoading = false
+        state.stats = payload.defaultStats
+        state.monthlyApplications = payload.monthlyApplications
       })
       .addCase(showStats.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        toast.error(payload);
-      });
-  },
-});
+        state.isLoading = false
+        toast.error(payload)
+      })
+  }
+})
 
 export const {
   showLoading,
@@ -124,7 +124,7 @@ export const {
   clearFilters,
   handleChange,
   changePage,
-  clearAllJobsState,
-} = allJobsSlice.actions;
+  clearAllJobsState
+} = allJobsSlice.actions
 
-export default allJobsSlice.reducer;
+export default allJobsSlice.reducer

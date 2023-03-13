@@ -1,17 +1,17 @@
-import { Landing, Error, Register, ProtectedRoute } from "./pages";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Landing, Error, Register, ProtectedRoute } from './pages'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
   Profile,
   Stats,
   AddJob,
   AllJobs,
-  SharedLayout,
-} from "./pages/dashboard";
-import React from "react";
+  SharedLayout
+} from './pages/dashboard'
+import React from 'react'
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <Routes>
@@ -34,7 +34,7 @@ function App() {
       </Routes>
       <ToastContainer position="top-center" />
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,7 +1,7 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import Wrapper from "./SharedLayout.styled";
-import { SmallSidebar, BigSidebar, Navbar } from "../../components";
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Wrapper from './SharedLayout.styled'
+import { SmallSidebar, BigSidebar, Navbar } from '../../components'
 
 const SharedLayout: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const SharedLayout: React.FC = () => {
         </div>
       </main>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default SharedLayout;
+export default SharedLayout

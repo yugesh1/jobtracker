@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Loading = ({ center }: { center: boolean }) => {
-  return <div className={center ? "loading loading-center" : "loading"}></div>;
-};
+  return <div className={center ? 'loading loading-center' : 'loading'}></div>
+}
 
-export default Loading;
+export default Loading

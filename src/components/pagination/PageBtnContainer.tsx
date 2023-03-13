@@ -1,29 +1,29 @@
-import React from "react";
-import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
-import Wrapper from "./PageBtnContainer.styled";
-import { changePage } from "../../features/reducers/allJobsSlice";
-import { useAppDispatch, useAppSelector } from "../../store";
+import React from 'react'
+import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi'
+import Wrapper from './PageBtnContainer.styled'
+import { changePage } from '../../features/reducers/allJobsSlice'
+import { useAppDispatch, useAppSelector } from '../../store'
 
 const PageBtnContainer = () => {
-  const { page, numOfPages } = useAppSelector((state) => state.allJobs);
-  const dispatch = useAppDispatch();
+  const { page, numOfPages } = useAppSelector((state) => state.allJobs)
+  const dispatch = useAppDispatch()
   const pages = Array.from({ length: numOfPages }, (_, index) => {
-    return index + 1;
-  });
+    return index + 1
+  })
   const nextPage = () => {
-    let newPage = page + 1;
+    let newPage = page + 1
     if (newPage > numOfPages) {
-      newPage = 1;
+      newPage = 1
     }
-    dispatch(changePage(newPage));
-  };
+    dispatch(changePage(newPage))
+  }
   const prevPage = () => {
-    let newPage = page - 1;
+    let newPage = page - 1
     if (newPage < 1) {
-      newPage = numOfPages;
+      newPage = numOfPages
     }
-    dispatch(changePage(newPage));
-  };
+    dispatch(changePage(newPage))
+  }
   return (
     <Wrapper>
       <button type="button" className="prev-btn" onClick={prevPage}>
@@ -34,7 +34,7 @@ const PageBtnContainer = () => {
         {pages.map((pageNumber) => (
           <button
             type="button"
-            className={pageNumber === page ? "pageBtn active" : "pageBtn"}
+            className={pageNumber === page ? 'pageBtn active' : 'pageBtn'}
             key={pageNumber}
             onClick={() => dispatch(changePage(pageNumber))}
           >
@@ -47,7 +47,7 @@ const PageBtnContainer = () => {
         <HiChevronDoubleRight />
       </button>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default PageBtnContainer;
+export default PageBtnContainer

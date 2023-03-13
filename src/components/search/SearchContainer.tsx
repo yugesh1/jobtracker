@@ -1,43 +1,46 @@
-import React, { useMemo, useState } from "react";
-import { FormRow, FormRowSelect } from "..";
-import Wrapper from "./SearchContainer.styled";
+import React, { useMemo, useState } from 'react'
+import { FormRow, FormRowSelect } from '..'
+import Wrapper from './SearchContainer.styled'
 import {
   clearFilters,
-  handleChange,
-} from "../../features/reducers/allJobsSlice";
-import { useAppDispatch, useAppSelector } from "../../store";
+  handleChange
+} from '../../features/reducers/allJobsSlice'
+import { useAppDispatch, useAppSelector } from '../../store'
 
 const SearchContainer = () => {
   const { isLoading, searchStatus, searchType, sort, sortOptions } =
-    useAppSelector((state) => state.allJobs);
-  const [localSearch, setLocalSearch] = useState("");
+    useAppSelector((state) => state.allJobs)
+  const [localSearch, setLocalSearch] = useState('')
   const { jobTypeOptions, statusOptions } = useAppSelector(
     (state) => state.job
-  );
-  const dispatch = useAppDispatch();
+  )
+  const dispatch = useAppDispatch()
   const handleSearch = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    dispatch(handleChange({ name: e.target.name, value: e.target.value }));
-  };
+    dispatch(handleChange({ name: e.target.name, value: e.target.value }))
+  }
   const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    setLocalSearch("");
-    dispatch(clearFilters());
-  };
+    e.preventDefault()
+    setLocalSearch('')
+    dispatch(clearFilters())
+  }
 
   const debounce = () => {
-    let timeoutId: any;
+    let timeoutId: any
     return (e: React.ChangeEvent<HTMLInputElement>) => {
-      setLocalSearch(e.target.value);
-      clearTimeout(timeoutId);
+      setLocalSearch(e.target.value)
+      clearTimeout(timeoutId)
       timeoutId = setTimeout(() => {
-        dispatch(handleChange({ name: e.target.name, value: e.target.value }));
-      }, 1000);
-    };
-  };
+        dispatch(handleChange({ name: e.target.name, value: e.target.value }))
+      }, 1000)
+    }
+  }
 
-  const optimisedDebounce = useMemo(() => debounce(), []);
+  const optimisedDebounce = useMemo(() => {
+    return debounce()
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Wrapper>
@@ -56,7 +59,7 @@ const SearchContainer = () => {
             name="searchStatus"
             value={searchStatus}
             handleChange={handleSearch}
-            list={["all", ...statusOptions]}
+            list={['all', ...statusOptions]}
           />
           {/* search by type */}
           <FormRowSelect
@@ -64,7 +67,7 @@ const SearchContainer = () => {
             name="searchType"
             value={searchType}
             handleChange={handleSearch}
-            list={["all", ...jobTypeOptions]}
+            list={['all', ...jobTypeOptions]}
           />
           {/* sort */}
           <FormRowSelect
@@ -83,7 +86,7 @@ const SearchContainer = () => {
         </div>
       </form>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default SearchContainer;
+export default SearchContainer

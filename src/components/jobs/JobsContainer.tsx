@@ -1,11 +1,11 @@
-import React from "react";
-import { useEffect } from "react";
-import Job from "./Job";
-import Wrapper from "./JobsContainer.styled";
-import Loading from "../Loading";
-import { getAllJobs } from "../../features/thunks/allJobs";
-import PageBtnContainer from "../pagination/PageBtnContainer";
-import { useAppDispatch, useAppSelector } from "../../store";
+import React, { useEffect } from 'react'
+
+import Job from './Job'
+import Wrapper from './JobsContainer.styled'
+import Loading from '../Loading'
+import { getAllJobs } from '../../features/thunks/allJobs'
+import PageBtnContainer from '../pagination/PageBtnContainer'
+import { useAppDispatch, useAppSelector } from '../../store'
 
 const JobsContainer = () => {
   const {
@@ -17,14 +17,19 @@ const JobsContainer = () => {
     search,
     searchType,
     sort,
-    searchStatus,
-  } = useAppSelector((state) => state.allJobs);
-  const dispatch = useAppDispatch();
+    searchStatus
+  } = useAppSelector((state) => state.allJobs)
+  const dispatch = useAppDispatch()
+
   useEffect(() => {
-    dispatch(getAllJobs());
+    const getJobs = async () => {
+      await dispatch(getAllJobs())
+    }
+    getJobs().catch((err) => { console.error(err) })
+    // eslint-disable-next-line
   }, [page, search, searchType, sort, searchStatus]);
   if (isLoading) {
-    return <Loading center />;
+    return <Loading center />
   }
 
   if (jobs.length === 0) {
@@ -32,22 +37,22 @@ const JobsContainer = () => {
       <Wrapper>
         <h2>No jobs to display...</h2>
       </Wrapper>
-    );
+    )
   }
 
   return (
     <Wrapper>
       <h5>
-        {totalJobs} job{jobs.length > 1 && "s"} found
+        {totalJobs} job{jobs.length > 1 && 's'} found
       </h5>
       <div className="jobs">
         {jobs.map((job) => {
-          return <Job key={job._id} {...job} />;
+          return <Job key={job._id} {...job} />
         })}
       </div>
       {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
-  );
-};
+  )
+}
 
-export default JobsContainer;
+export default JobsContainer
